@@ -1,0 +1,140 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{PaloAlto}      
+  \definecolor{ASURed}{RGB}{153,0,51}
+  \definecolor{peach-yellow}{rgb}{0.98, 0.87, 0.68}
+  \setbeamercolor{title}{bg=ASURed}     %controls the color of the headline
+  \setbeamercolor{frametitle}{bg=ASURed}     %controls the color of the headline
+  \setbeamercolor{sidebar}{bg=peach-yellow}    %controls the color of the sidebar
+  \setbeamercolor{logo}{bg=ASURed!70!black}  %controls the color of the logo area
+  \setbeamercolor{section in sidebar}{fg=ASURed!70!black}  %color of the active section
+ % \setbeamercolor{section in sidebar shaded}{fg=normaltext}  %color of the inactive section
+  \setbeamercolor{subsection in sidebar}{fg=ASURed!70!black}  %color of the active subsection
+%  \setbeamercolor{subsection in sidebar shaded}{fg=normaltext}  %color of the inactive subsection
+  \usefonttheme{structurebold}  
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath, amssymb, amsthm, graphicx, bm}
+
+\title[]{Interesting Title About Flocking!! :D}
+\author[]{Scott Mahan \and Kevin Winseck \and Edward Martinez}
+\institute{Dr. Sebastien Motsch \\ Arizona State University}
+\date{June 7, 2016}
+
+  \makeatletter
+  \setbeamertemplate{sidebar \beamer@sidebarside}   % sidebar theme
+  {
+    \beamer@tempdim=\beamer@sidebarwidth
+    \advance\beamer@tempdim by -6pt
+    \insertverticalnavigation{\beamer@sidebarwidth}
+    \vfill
+    \ifx\beamer@sidebarside\beamer@lefttext
+    \else
+      \usebeamercolor{normal text}
+      \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}
+      \vskip2pt
+    \fi
+  }
+\makeatother
+
+\DeclareMathOperator{\Lagr}{\mathcal{L}}			% Lagrangian L
+
+
+\begin{document}
+\begin{frame}
+  \titlepage
+  \includegraphics[scale = .45]{asu_logo}
+%  \includegraphics[scale = .25]{asulogobw}
+  \hfill
+  \includegraphics[scale = .2]{nsf1}
+\end{frame}
+%------------------------------------
+\section{Intro to Flocking}
+\begin {frame}
+
+\end{frame}
+%------------------------------------
+
+\section{Generalization}
+\begin {frame}
+
+\end{frame}
+%-----------------------------------
+\section{Flocking and Control}
+\begin{frame}{Control Theory}
+	\begin{equation*}
+        \begin{cases}
+        \bm{x}' = f(\bm{x},\bm{u})\\%,  & u \text{ is the control} \\
+        \bm{x}(0) = \bm{x_0}
+        \end{cases}
+    \end{equation*}
+    \begin{itemize}
+    	\item Easy case: $\bm{x}' = f(\bm{x}) + \bm{u}$.
+    	\item We need to find $\bm{u}(t)$ so that $\bm{x}(t)$ satisfies some objective.
+        \item Invoke an energy $E(t) = |\bm{x}(t)-\bm{x_d}|^2 + \nu|\bm{u}|^2$.
+        \begin{itemize}
+        	\item $\bm{x_d} =$ desired position
+        \end{itemize}
+		\item Minimize $\int_{0}^{\Delta t}{E(t) dt}$.         
+    \end{itemize}
+\end{frame}
+%------------------------------------
+\begin{frame}{Control Theory (Cont.)}
+	\begin{itemize}
+    	\item Sparse Control
+        $$\left( \begin{array}{ccc}
+			x_1'   \\  x_2' \\ \vdots \\ x_i' \\ \vdots   \\ x_N' 
+            \end{array} \right) 
+            = F \left( \begin{array}{ccc}
+            x_1 \\ x_2 \\ \vdots \\ x_i \\ \vdots \\x_N 
+            \end{array} \right) 
+            + \left( \begin{array}{ccc}
+            u_1(t) \\ u_2(t) \\ \vdots \\ 0 \\ \vdots \\ 0 
+            \end{array} \right)
+            $$
+    \end{itemize}
+\end{frame}
+%-----------------------------------
+\subsection{Objectives}
+\begin{frame}{Objectives for Position}
+	\begin{itemize} 
+		\item Go to specific place.
+		\item Follow a path.
+		\item Follow a given bird.
+		\item Split into two groups.
+		\item Change direction of flow.
+		\item Repulsion "dog".
+	\end{itemize}
+\end{frame}
+%-------------------------------------
+\subsection{Implementation}
+\begin{frame}{Method and Numerical Implementation}
+	\begin{itemize}
+		\item Use $\Lagr(x,u,\lambda)$.
+	\end{itemize}
+\end{frame}
+%-----------------------------------
+\section{Conclusion}
+\begin{frame}{Other Areas of Interest}
+	\begin{itemize}
+		\item Flocking on Manifolds
+			\begin{itemize}
+				\item Smooth surfaces
+			\end{itemize}
+		\item Stochastics
+			\begin{itemize}
+				\item Adding noise
+			\end{itemize}
+		\item PDEs and Flocking 
+			\begin{itemize}
+				\item Use PDEs to describe macro-level interaction
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+\end{document}
